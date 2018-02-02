@@ -24,6 +24,7 @@ enum custom_keycodes {
 #define ALT_TAB LALT(KC_TAB)
 #define WIN_TAB LGUI(KC_TAB)
 #define BSLSH KC_BSLASH
+#define NUMPAD TG(_FNSPC)
 #define POUND HYPR(KC_F1)
 #define DEGREE HYPR(KC_F2)
 #define PLSMIN HYPR(KC_F3)
@@ -107,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Play | Prev | Next |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | BkLt | BL-  | BL+  |      |             |      |      |      |      |Reset |
+ * |Numpad| BkLt | BL-  | BL+  |      |             |      |      |      |      |Reset |
  * `-----------------------------------------------------------------------------------'
  */
  
@@ -115,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {TSKMAN,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   SNIP,    _______},
   {_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
   {_______, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
-  {_______, BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, _______, _______, RESET}
+  {NUMPAD , BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, _______, _______, RESET}
 }
 };
  
