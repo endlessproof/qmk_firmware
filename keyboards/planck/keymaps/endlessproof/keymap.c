@@ -24,7 +24,8 @@ enum custom_keycodes {
 #define ALT_TAB LALT(KC_TAB)
 #define WIN_TAB LGUI(KC_TAB)
 #define BSLSH KC_BSLASH
-#define NUMPAD TG(_FNSPC)
+#define NUM_ON TO(_FNSPC)
+#define NUM_OFF TO(_MAIN)
 #define POUND HYPR(KC_F1)
 #define DEGREE HYPR(KC_F2)
 #define PLSMIN HYPR(KC_F3)
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FNSPC] = {
   {_______, KC_HOME, KC_END,  EML,     KC_F5,   XXXXXXX, KC_SLASH, KC_7,    KC_8,    KC_9,    KC_MINS, _______},
   {KC_DEL,  KC_PGDN, KC_PGUP, PWD,     KC_DLR,  XXXXXXX, KC_PAST,  KC_4,    KC_5,    KC_6,    KC_PLUS, KC_DEL},
-  {_______, KC_LPRN, KC_RPRN, KC_CAPS, _______, XXXXXXX, KC_HASH,  KC_1,    KC_2,    KC_3,    KC_EQL,  _______},
+  {NUM_OFF, KC_LPRN, KC_RPRN, KC_CAPS, _______, XXXXXXX, KC_HASH,  KC_1,    KC_2,    KC_3,    KC_EQL,  _______},
   {KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, _______,  KC_0,    DBL0,    KC_DOT,  XXXXXXX, XXXXXXX}
 },
  
@@ -108,15 +109,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Play | Prev | Next |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Numpad| BkLt | BL-  | BL+  |      |             |      |      |      |      |Reset |
+ * |      | BkLt | BL-  | BL+  |      |             |      |      |      |      |Reset |
  * `-----------------------------------------------------------------------------------'
  */
  
 [_LOWER] = {
   {TSKMAN,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   SNIP,    _______},
   {_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
-  {_______, KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
-  {NUMPAD , BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, _______, _______, RESET}
+  {NUM_ON,  KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
+  {_______, BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, _______, _______, RESET}
 }
 };
  
