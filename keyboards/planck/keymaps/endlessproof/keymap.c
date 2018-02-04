@@ -15,6 +15,8 @@ enum planck_layers {
  
 enum custom_keycodes {
     DBL0 = SAFE_RANGE,
+    PWD,
+    EML
 };
  
 #define FN_SPC LT(_FNSPC, KC_SPC)
@@ -31,9 +33,8 @@ enum custom_keycodes {
 #define PLSMIN HYPR(KC_F3)
 #define LESSTHN HYPR(KC_F4)
 #define MORETHN HYPR(KC_F5)
-#define EML HYPR(KC_F6)
-#define PWD HYPR(KC_F7)
 #define SNIP HYPR(KC_F8)
+
  
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  
@@ -50,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  
 [_MAIN] = {
-  {KC_ESC, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
+  {KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
   {KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT },
   {KC_LCTL, KC_LGUI, KC_LALT, KC_HYPR, LOWER,   FN_SPC,  FN_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT}
@@ -67,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  (   |  )   | Caps |  :   |      |  #   |   1  |   2  |   3  |   =  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Left | Down | Up   | Right|      |             |   0  |  00  |   .  |      |      |
+ * | Left | Down | Up   | Right|      |             |   0  |  00  |   .  |      |ENDASH|
  * `-----------------------------------------------------------------------------------'
  */
  
@@ -109,24 +110,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Play | Prev | Next |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | BkLt | BL-  | BL+  |      |             |      |      |      |      |Reset |
+ * |      | BkLt | BL-  | BL+  |      |             |      |      |AUDOFF|AUD ON|Reset |
  * `-----------------------------------------------------------------------------------'
  */
  
 [_LOWER] = {
   {TSKMAN,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   SNIP,    _______},
-  {_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
+  {_______, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
   {NUM_ON,  KC_MPLY, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______},
-  {_______, BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, _______, _______, RESET}
+  {_______, BL_TOGG, BL_DEC,  BL_INC,  _______, _______, _______, _______, _______, AU_OFF,  AU_ON,   RESET}
 }
+
+
 };
  
+
  
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case DBL0:
         SEND_STRING("00");
+        return false;
+      case PWD:
+        SEND_STRING("Password");
+        return false;
+      case EML:
+        SEND_STRING("email@address.com");
         return false;
     }
   }
